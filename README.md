@@ -11,11 +11,8 @@ Tais dados deverão ser acessíveis através de uma API Restful desenvolvida em 
 
 ## Requisitos
 
-* Utilizar uma biblioteca WYSIWYG para edição do campo "Conteúdo"
 * A API deverá seguir a arquitetura Restful
 * Utilizar um BD NoSQL para armazenamento dos dados
-
-O projeto deve conter cobertura de testes.
 
 Lembre-se a proposta é avaliar a sua capacidade como desenvolvedor em critérios como: organização do código, legibilidade, manutenabilidade e tolerância a falhas.
 
