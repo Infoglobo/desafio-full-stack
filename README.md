@@ -12,7 +12,6 @@ Tais dados deverão ser acessíveis através de uma API Restful desenvolvida em 
 
 * Utilizar uma biblioteca WYSIWYG para o campo "Conteúdo"
 * A API deverá seguir a arquitetura Restful
-* O campo links deve ser identico ao item do feed;
 
 Tal projeto deve conter cobertura de testes.
 
