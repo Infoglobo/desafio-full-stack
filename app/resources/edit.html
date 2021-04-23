@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+    <script type="text/javascript">
+     function getNewsId(){
+        var splits = location.search.substring(1).split('=');
+        var id = splits[1];
+        return id;
+     }
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){     
+            var id = getNewsId();
+             
+            $.ajax({method: "GET",
+                    url: "http://localhost:8080/api/news/"+id,
+                    data:{}, 
+                    success: function(news){
+                        $('#title').val(news.title);
+                        $('#content').val(news.content);                      
+                    }
+            }) 
+            
+        });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var id = getNewsId();
+
+        $('#btn-edit').click(function(){
+                    $.ajax({type: "PUT",
+                    contentType: "application/json; charset=utf-8",
+                    header:{
+                       "Access-Control-Allow-Origin": "*",
+                       "Access-Control-Allow-Origin":"http://localhost:8080",
+                       "Access-Control-Allow-Methods": "PUT, GET, POST, DELETE, OPTIONS",
+                       "Access-Control-Allow-Headers": "Content-Type",
+                       "Access-Control-Allow-Headers": "X-Requested-With"
+                    },
+                    url: "http://localhost:8080/api/news/"+id,
+                    data:{title: $('#title').val(),
+                          content:$('#content').val(),
+                          dt_published:Date,
+                    }, 
+                    success:function(){
+                        window.location.href= document.referrer;
+
+                    } 
+            })
+            
+        });  
+        
+    });
+    </script>
+    
+
+    <title>Editar Cliente</title>
+</head>
+<body>
+    <div class="container">        
+        <form id="form-create" data-toggle="" action="" method="">
+
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+            <div class="col-md-1 p-0 img-overlay">
+                <img class="img-fluid" src="https://logodownload.org/wp-content/uploads/2013/12/rede-globo-logo-0.png" class="img-fluid">
+            </div>
+            <h5 class="my-0 mr-md-auto font-weight-normal">Editar Notícia</h5>        
+        </div>
+        <div class="modal-body">
+            <!-- Bloco 1 -->
+            <div class="form-row">
+                
+                <div class="col-md-4 mb-3"> 
+                    <label for="">Título</label>                              
+                    <input class="form-control" data-maxlength="3" type="text" name="title" id="title">                       
+                    <div class="help-block with-errors"></div> 
+                </div>
+               
+                <div class="col-md-6 mb-3">
+                    <label for="">Conteúdo</label> 
+                    <input class="form-control" data-maxlength="3" type="text" name="content" id="content">
+                </div>
+            </div>
+            <!-- Bloco 2 -->
+        </div>
+        <div class="modal-footer">
+            <button type="submit" id="btn-edit" class="btn btn-primary">Editar</button>            
+            <a class="btn btn-primary" href="./index.html" role="button">Voltar</a> 
+        </div>
+        </form>
+    </div>  
+    
+    
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> 
+     
+
+</body>
+</html>
